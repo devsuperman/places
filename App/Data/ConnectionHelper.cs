@@ -7,7 +7,7 @@ public static class ConnectionHelper
     public static string GetConnectionString(IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("db");
-        var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+        var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL_CUSTOM");
         return string.IsNullOrEmpty(databaseUrl) ? connectionString : BuildConnectionString(databaseUrl);
     }
 
