@@ -1,6 +1,6 @@
-@model List<Gasto>
+@model List<Predicacion>
 @{
-    ViewData["Title"] = "Gastos";
+    ViewData["Title"] = "Predicaciones";
 }
 
 <div class="d-flex">
@@ -22,8 +22,8 @@
 <form class="row mb-4">
 
     <div class="mb-2 col-md-4">
-        <select name="categoriaId" asp-items='@(SelectList)ViewData["selectCategorias"]' class="form-select">
-            <option value="">Categorias</option>
+        <select name="territorioId" asp-items='@(SelectList)ViewData["selectTerritorios"]' class="form-select">
+            <option value="">Territórios</option>
         </select>
     </div>
 
@@ -52,10 +52,10 @@
     {
         <a class="list-group-item list-group-item-action d-flex" asp-action="Editar" asp-route-id="@item.Id">
             <span class='flex-grow-1'>
-                @item.Fecha.ToShortDateString() - @item.Categoria.Nombre @item.Nombre
+                @item.Fecha.ToShortDateString() - @item.Territorio.Nombre
             </span>
             <span>
-                R$ @item.Valor.Value.ToString("N2")
+                @item.Manzanas - @item.Observacion
             </span>
         </a>
     }

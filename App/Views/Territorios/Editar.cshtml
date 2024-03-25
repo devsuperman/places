@@ -1,18 +1,21 @@
-@model Gasto
+@model Territorio
 @{
-    ViewData["Title"] = "Añadir Gasto";
+    ViewData["Title"] = "Editar Território";
 }
 
-<h1>
-    <i class="bi bi-coin"></i>
+<h1 class='flex-grow-1'>
+    <i class="bi bi-list-task"></i>
     @ViewData["Title"]
 </h1>
 <hr>
 
-<form asp-action="Anadir" method="post">
+<form asp-action="Editar">
+
+    <input type="hidden" asp-for="Id" />
 
     <partial name="_Form" />
 
+    
     <div class="d-flex justify-content-end">
         
         <a asp-action="Index" class="btn btn-light"> 
@@ -22,7 +25,7 @@
 
         <button type="submit" class="btn btn-primary ms-2"> 
             <i class="bi bi-check-lg"></i>
-            Guardar Gasto
+            Guardar Território
         </button>
 
     </div>

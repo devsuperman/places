@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace App.Models;
 
-public class Categoria
+public class Territorio
 {
     public int Id { get; set; }
 

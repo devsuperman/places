@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Diagnostics;
@@ -61,35 +59,8 @@ public class HomeController : Controller
 
 
 
-    [Authorize]
-    public async Task<IActionResult> Index(DateTime? mesAno = null)
-    {
-        mesAno ??= DateTime.Today;
+    public IActionResult Index => RedirectToAction("Index", "Predicaciones");
 
-        ViewData["mesAno"] = mesAno.Value.ToString("yyyy-MM");
-
-        var totaisPorCategoria = await _db.Gastos
-            .Where(w =>
-                w.Fecha.Month == mesAno.Value.Month &&
-                w.Fecha.Year == mesAno.Value.Year)
-            .Select(s => new
-            {
-                Categoria = s.Categoria.Nombre,
-                s.Valor
-            })
-            .GroupBy(g => g.Categoria)
-            .Select(s => new Tuple<string, decimal>(s.Key, s.Sum(d => d.Valor.Value)))
-            .ToListAsync();
-
-        totaisPorCategoria = totaisPorCategoria.OrderByDescending(o=>o.Item2).ToList();
-
-        return View(totaisPorCategoria);
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

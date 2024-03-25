@@ -1,21 +1,18 @@
-@model Categoria
+@model Predicacion
 @{
-    ViewData["Title"] = "Editar Categoria";
+    ViewData["Title"] = "Añadir Predicacion";
 }
 
-<h1 class='flex-grow-1'>
-    <i class="bi bi-list-task"></i>
+<h1>
+    <i class="bi bi-coin"></i>
     @ViewData["Title"]
 </h1>
 <hr>
 
-<form asp-action="Editar">
-
-    <input type="hidden" asp-for="Id" />
+<form asp-action="Anadir" method="post">
 
     <partial name="_Form" />
 
-    
     <div class="d-flex justify-content-end">
         
         <a asp-action="Index" class="btn btn-light"> 
@@ -25,7 +22,7 @@
 
         <button type="submit" class="btn btn-primary ms-2"> 
             <i class="bi bi-check-lg"></i>
-            Guardar Categoria
+            Guardar Predicacion
         </button>
 
     </div>
