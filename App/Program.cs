@@ -50,6 +50,6 @@ await DataHelper.ManageDataAsync(scope.ServiceProvider);
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Predicaciones}/{action=Index}/{id?}");
 
 app.Run();

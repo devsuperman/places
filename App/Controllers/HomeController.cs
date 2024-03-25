@@ -4,21 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Diagnostics;
 using App.Models;
-using App.Data;
 
 namespace App.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly Contexto _db;
 
-    public HomeController(ILogger<HomeController> logger, Contexto db)
+    public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
-        _db = db;
     }
-
 
     public IActionResult Entrar() => View();
 
@@ -56,12 +52,7 @@ public class HomeController : Controller
             authProperties);
     }
 
-
-
-
-    public IActionResult Index => RedirectToAction("Index", "Predicaciones");
-
-
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

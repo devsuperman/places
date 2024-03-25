@@ -2,13 +2,21 @@
 
 <div class="mb-2">
     <label asp-for="Fecha"></label>
-    <input class="form-control" asp-for="Fecha" required autofocus  >
+    <input class="form-control" asp-for="Fecha" required>
     <span asp-validation-for='Fecha' class='text-danger'></span>
 </div>
 
 <div class="mb-2">
+    <label asp-for="Dirigente"></label>
+    <select class="form-select" asp-for="Dirigente" asp-items='(SelectList)ViewData["selectDirigentes"]' required>
+        <option value=''>Selecione</option>
+    </select>
+    <span asp-validation-for='Dirigente' class='text-danger'></span>
+</div>
+
+<div class="mb-2">
     <label asp-for="TerritorioId"></label>
-    <select class="form-select" asp-for="TerritorioId" asp-items='(SelectList)ViewData["selectTerrotorios"]'>
+    <select class="form-select" asp-for="TerritorioId" asp-items='(SelectList)ViewData["selectTerritorios"]' required>
         <option value=''>Selecione</option>
     </select>
     <span asp-validation-for='TerritorioId' class='text-danger'></span>
@@ -16,6 +24,12 @@
 
 <div class="mb-2">
     <label asp-for="Manzanas"></label>
-    <input class="form-control" asp-for="Manzanas">
+    <input class="form-control" asp-for="Manzanas" required>
     <span asp-validation-for='Manzanas' class='text-danger'></span>
+</div>
+
+<div class="mb-2">
+    <label asp-for="Observacion"></label>
+    <input class="form-control" asp-for="Observacion">
+    <span asp-validation-for='Observacion' class='text-danger'></span>
 </div>

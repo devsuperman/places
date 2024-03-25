@@ -17,6 +17,7 @@ public class PredicacionesController : Controller
         _db = db;
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> Index(int territorioId = 0, DateTime? mesAno = null)
     {
         mesAno ??= DateTime.Today;
@@ -55,7 +56,7 @@ public class PredicacionesController : Controller
         return View(model);
     }
 
-    private async Task CarregarViewDatas(int territorioId = 0)
+    private async Task CarregarViewDatas(int territorioId = 0, string dirigente = null)
     {
         var territorios = await _db.Territorios
             .AsNoTracking()
@@ -67,7 +68,15 @@ public class PredicacionesController : Controller
             })
             .ToListAsync();
 
+        var listaDirigentes = new string[] {
+                "Denilson",
+                "Gustavo",
+                "Herminio",
+                "Tiago"
+            };
+
         ViewData["selectTerritorios"] = new SelectList(territorios, "Id", "Nombre", territorioId);
+        ViewData["selectDirigentes"] = new SelectList(listaDirigentes, dirigente);
     }
 
     [HttpPost]
@@ -81,8 +90,7 @@ public class PredicacionesController : Controller
             return RedirectToAction("Index");
         }
 
-
-        await CarregarViewDatas();
+        await CarregarViewDatas(model.TerritorioId, model.Dirigente);
 
         return View(model);
     }
@@ -91,7 +99,7 @@ public class PredicacionesController : Controller
     {
         var model = await _db.Predicaciones.FindAsync(id);
 
-        await CarregarViewDatas(model.TerritorioId);
+        await CarregarViewDatas(model.TerritorioId, model.Dirigente);
 
         return View(model);
     }
@@ -107,7 +115,7 @@ public class PredicacionesController : Controller
             return RedirectToAction("Index");
         }
 
-        await CarregarViewDatas(model.TerritorioId);
+        await CarregarViewDatas(model.TerritorioId, model.Dirigente);
         return View(model);
     }
 
